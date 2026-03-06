@@ -1,14 +1,20 @@
--- Criar a tabela clientes
-CREATE TABLE clientes (
-    nome VARCHAR(50),
-    idade INT,
-    cidade VARCHAR(50)
+SELECT * FROM demo;-- Criação da tabela LIVROS
+CREATE TABLE LIVROS (
+    ID_LIVRO   INT PRIMARY KEY,       -- Identificador único do livro
+    NOME_LIVRO VARCHAR(100) NOT NULL, -- Nome do livro
+    AUTORIA    VARCHAR(100) NOT NULL, -- Autor(a) do livro
+    EDITORA    VARCHAR(100) NOT NULL, -- Editora responsável
+    CATEGORIA  VARCHAR(50) NOT NULL,  -- Categoria do livro
+    PREÇO      DECIMAL(10,2) NOT NULL -- Preço do livro
 );
 
--- Inserir dados na tabela clientes
-INSERT INTO clientes (nome, idade, cidade) VALUES ('Maria Silva', 30, 'São Paulo');
-INSERT INTO clientes (nome, idade, cidade) VALUES ('João Oliveira', 25, 'Rio de Janeiro');
-INSERT INTO clientes (nome, idade, cidade) VALUES ('Ana Pereira', 35, 'Curitiba');
+-- Inserção dos registros na tabela LIVROS
+INSERT INTO LIVROS 
+(CATEGORIA, AUTORIA, NOME_LIVRO, EDITORA, ID_LIVRO, PREÇO)
+VALUES
+('Biografia', 'Malala Yousafzai', 'Eu sou Malala',        'Companhia das Letras', 11, 22.32),
+('Biografia', 'Michelle Obama',   'Minha história',       'Objetiva',              12, 57.90),
+('Biografia', 'Anne Frank',       'Diário de Anne Frank', 'Pe Da Letra',           13, 34.90);
 
--- Mostrar os dados da tabela clientes
-SELECT * FROM clientes;
+-- Exibir todos os registros da tabela LIVROS
+SELECT * FROM LIVROS;
