@@ -31,3 +31,48 @@ SELECT
     Compras.NomeLivro
 FROM Clientes
 JOIN Compras ON Clientes.ID = Compras.ClienteID;
+
+select * FROM clientes
+-- 1. LIMPEZA (Opcional: remove as tabelas se já existirem para evitar erros ao reexecutar)
+DROP TABLE IF EXISTS Compras;
+DROP TABLE IF EXISTS Clientes;
+
+-- 2. CRIAÇÃO DAS TABELAS
+CREATE TABLE Clientes (
+    ID INT PRIMARY KEY,
+    nomeCliente VARCHAR(100),
+    emailCliente VARCHAR(100)
+);
+
+CREATE TABLE Compras (
+    CompraID INT PRIMARY KEY,
+    ClienteID INT,
+    NomeLivro VARCHAR(255),
+    FOREIGN KEY (ClienteID) REFERENCES Clientes(ID)
+);
+
+-- 3. INSERÇÃO DE DADOS (Aqui é onde você adiciona as informações)
+-- Inserindo Clientes
+INSERT INTO Clientes (ID, nomeCliente, emailCliente) 
+VALUES (1, 'Alice Monteiro', 'alice@email.com');
+
+INSERT INTO Clientes (ID, nomeCliente, emailCliente) 
+VALUES (2, 'João Pedro', 'joao@email.com');
+
+-- Inserindo Compras relacionadas aos IDs acima
+INSERT INTO Compras (CompraID, ClienteID, NomeLivro) 
+VALUES (10, 1, 'O Senhor dos Anéis');
+
+INSERT INTO Compras (CompraID, ClienteID, NomeLivro) 
+VALUES (11, 1, 'Harry Potter e a Pedra Filosofal');
+
+INSERT INTO Compras (CompraID, ClienteID, NomeLivro) 
+VALUES (12, 2, 'Cem Anos de Solidão');
+
+-- 4. CONSULTA PARA VERIFICAR OS DADOS
+-- Este comando junta as duas tabelas para mostrar o nome do cliente e o livro que ele comprou
+SELECT 
+    Clientes.nomeCliente, 
+    Compras.NomeLivro
+FROM Clientes
+INNER JOIN Compras ON Clientes.ID = Compras.ClienteID;
