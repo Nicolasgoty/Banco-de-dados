@@ -69,6 +69,39 @@ VALUES (11, 1, 'Harry Potter e a Pedra Filosofal');
 INSERT INTO Compras (CompraID, ClienteID, NomeLivro) 
 VALUES (12, 2, 'Cem Anos de Solidão');
 
+--- 1. CRIAÇÃO DAS TABELAS
+CREATE TABLE Clientes (
+    ID INT PRIMARY KEY,
+    nomeCliente VARCHAR(100),
+    emailCliente VARCHAR(100)
+);
+
+CREATE TABLE Compras (
+    CompraID INT PRIMARY KEY,
+    ClienteID INT,
+    NomeLivro VARCHAR(255),
+    FOREIGN KEY (ClienteID) REFERENCES Clientes(ID)
+);
+
+--- 2. INSERÇÃO DE DADOS PARA TESTE
+INSERT INTO Clientes (ID, nomeCliente, emailCliente) VALUES 
+(1, 'Carlos Andrade', 'carlos@email.com'),
+(2, 'Marina Silva', 'marina@email.com'),
+(3, 'Roberto Freire', 'roberto@email.com');
+
+INSERT INTO Compras (CompraID, ClienteID, NomeLivro) VALUES 
+(101, 1, 'Dom Casmurro'),
+(102, 1, 'A Hora da Estrela'),
+(103, 2, 'O Pequeno Príncipe'),
+(104, 3, '1984');
+
+--- 3. CONSULTA COM INNER JOIN
+-- Retorna o nome do cliente e o nome do livro para todas as compras
+SELECT 
+    Clientes.nomeCliente, 
+    Compras.NomeLivro
+FROM Clientes
+INNER JOIN Compras ON Clientes.ID = Compras.ClienteID;
 -- 4. CONSULTA PARA VERIFICAR OS DADOS
 -- Este comando junta as duas tabelas para mostrar o nome do cliente e o livro que ele comprou
 SELECT 
